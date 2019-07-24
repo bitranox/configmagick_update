@@ -16,7 +16,7 @@ else:
     from rst_include.libs import lib_log
 
 # CONSTANTS & PROJECT SPECIFIC FUNCTIONS
-codeclimate_link_hash = "7d130ff52f3b507552ad"  # for lib_detect_encoding
+codeclimate_link_hash = "aa5a5ed6b54f83dd36fb"  # for configmagick_update
 
 
 def project_specific(repository_slug, repository, repository_dashed):
