@@ -1,2 +1,0 @@
-# configmagick_update
-configmagick_update

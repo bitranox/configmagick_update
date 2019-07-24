@@ -1,4 +1,4 @@
-lib_detect_encoding
+configmagick_update
 ===================
 
 |Pypi Status| |license| |maintenance|
@@ -8,26 +8,26 @@ lib_detect_encoding
 .. |license| image:: https://img.shields.io/github/license/webcomics/pywine.svg
    :target: http://en.wikipedia.org/wiki/MIT_License
 .. |maintenance| image:: https://img.shields.io/maintenance/yes/2019.svg
-.. |Build Status| image:: https://travis-ci.org/bitranox/lib_detect_encoding.svg?branch=master
-   :target: https://travis-ci.org/bitranox/lib_detect_encoding
+.. |Build Status| image:: https://travis-ci.org/bitranox/configmagick_update.svg?branch=master
+   :target: https://travis-ci.org/bitranox/configmagick_update
 .. for the pypi status link note the dashes, not the underscore !
-.. |Pypi Status| image:: https://badge.fury.io/py/lib-detect-encoding.svg
-   :target: https://badge.fury.io/py/lib_detect_encoding
-.. |Codecov Status| image:: https://codecov.io/gh/bitranox/lib_detect_encoding/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/bitranox/lib_detect_encoding
-.. |Better Code| image:: https://bettercodehub.com/edge/badge/bitranox/lib_detect_encoding?branch=master
-   :target: https://bettercodehub.com/results/bitranox/lib_detect_encoding
-.. |snyk security| image:: https://snyk.io/test/github/bitranox/lib_detect_encoding/badge.svg
-   :target: https://snyk.io/test/github/bitranox/lib_detect_encoding
+.. |Pypi Status| image:: https://badge.fury.io/py/configmagick-update.svg
+   :target: https://badge.fury.io/py/configmagick_update
+.. |Codecov Status| image:: https://codecov.io/gh/bitranox/configmagick_update/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/bitranox/configmagick_update
+.. |Better Code| image:: https://bettercodehub.com/edge/badge/bitranox/configmagick_update?branch=master
+   :target: https://bettercodehub.com/results/bitranox/configmagick_update
+.. |snyk security| image:: https://snyk.io/test/github/bitranox/configmagick_update/badge.svg
+   :target: https://snyk.io/test/github/bitranox/configmagick_update
 .. |code climate| image:: https://api.codeclimate.com/v1/badges/7d130ff52f3b507552ad/maintainability
-   :target: https://codeclimate.com/github/bitranox/lib_detect_encoding/maintainability
+   :target: https://codeclimate.com/github/bitranox/configmagick_update/maintainability
    :alt: Maintainability
 
-some convenience functions for encoding detection
+pip and project updates from github with version cache, to avoid unnecessary, time consuming downloads
 
 supports python 3.7 and possibly other dialects.
 
-`100% code coverage <https://codecov.io/gh/bitranox/lib_detect_encoding>`_, mypy static type checking, tested under `Linux, OsX, Windows and Wine <https://travis-ci.org/bitranox/lib_detect_encoding>`_, automatic daily builds  and monitoring
+`100% code coverage <https://codecov.io/gh/bitranox/configmagick_update>`_, mypy static type checking, tested under `Linux, OsX, Windows and Wine <https://travis-ci.org/bitranox/configmagick_update>`_, automatic daily builds  and monitoring
 
 ----
 
@@ -36,9 +36,9 @@ supports python 3.7 and possibly other dialects.
 - `Requirements`_
 - `Acknowledgements`_
 - `Contribute`_
-- `Report Issues <https://github.com/bitranox/lib_detect_encoding/blob/master/ISSUE_TEMPLATE.md>`_
-- `Pull Request <https://github.com/bitranox/lib_detect_encoding/blob/master/PULL_REQUEST_TEMPLATE.md>`_
-- `Code of Conduct <https://github.com/bitranox/lib_detect_encoding/blob/master/CODE_OF_CONDUCT.md>`_
+- `Report Issues <https://github.com/bitranox/configmagick_update/blob/master/ISSUE_TEMPLATE.md>`_
+- `Pull Request <https://github.com/bitranox/configmagick_update/blob/master/PULL_REQUEST_TEMPLATE.md>`_
+- `Code of Conduct <https://github.com/bitranox/configmagick_update/blob/master/CODE_OF_CONDUCT.md>`_
 - `License`_
 - `Changelog`_
 
@@ -61,31 +61,31 @@ via pip latest Release:
 .. code-block:: bash
 
     # latest Release from pypi
-    pip install lib_detect_encoding
+    pip install configmagick_update
 
     # test without installing
-    pip install lib_detect_encoding --install-option test
+    pip install configmagick_update --install-option test
 
 via pip latest Development Version:
 
 .. code-block:: bash
 
     # upgrade all dependencies regardless of version number (PREFERRED)
-    pip install --upgrade https://github.com/bitranox/lib_detect_encoding/archive/master.zip --upgrade-strategy eager
+    pip install --upgrade git+https://github.com/bitranox/configmagick_update.git --upgrade-strategy eager
     # normal install
-    pip install --upgrade https://github.com/bitranox/lib_detect_encoding/archive/master.zip
+    pip install --upgrade git+https://github.com/bitranox/configmagick_update.git
     # test without installing
-    pip install https://github.com/bitranox/lib_detect_encoding/archive/master.zip --install-option test
+    pip install git+https://github.com/bitranox/configmagick_update.git --install-option test
 
 via requirements.txt:
 
 .. code-block:: bash
 
     # Insert following line in Your requirements.txt:
-    # for the latest Release:
-    lib_detect_encoding
+    # for the latest Release from pypy :
+    configmagick_update
     # for the latest Development Version :
-    https://github.com/bitranox/lib_detect_encoding/archive/master.zip
+    git+https://github.com/bitranox/configmagick_update.git
 
     # to install and upgrade all modules mentioned in requirements.txt:
     pip install --upgrade -r /<path>/requirements.txt
@@ -95,10 +95,10 @@ via python:
 .. code-block:: python
 
     # for the latest Release
-    python -m pip install upgrade lib_detect_encoding
+    python -m pip install upgrade configmagick_update
 
     # for the latest Development Version
-    python -m pip install upgrade https://github.com/bitranox/lib_detect_encoding/archive/master.zip
+    python -m pip install upgrade git+https://github.com/bitranox/configmagick_update.git
 
 Basic Usage
 -----------
@@ -111,9 +111,13 @@ following modules will be automatically installed :
 
 .. code-block:: shell
 
+    chardet                                                           # see : https://pypi.org/project/chardet/
     pytest                                                            # see : https://github.com/pytest-dev/pytest
     typing                                                            # see : https://pypi.org/project/typing/
-    https://github.com/bitranox/lib_platform/archive/master.zip       # see : https://github.com/bitranox/lib_platform
+    git+https://github.com/bitranox/configmagick_bash.git             # see : https://github.com/bitranox/configmagick_bash
+    git+https://github.com/bitranox/lib_regexp.git                    # see : https://github.com/bitranox/lib_regexp
+    # git+https://github.com/bitranox/lib_log_utils.git               # already included in configmagick_bash
+    # git+https://github.com/bitranox/lib_shell                       # already included in configmagick_bash
 
 Acknowledgements
 ----------------
@@ -124,7 +128,7 @@ Contribute
 ----------
 
 I would love for you to fork and send me pull request for this project.
-- `please Contribute <https://github.com/bitranox/lib_detect_encoding/blob/master/CONTRIBUTING.md>`_
+- `please Contribute <https://github.com/bitranox/configmagick_update/blob/master/CONTRIBUTING.md>`_
 
 License
 -------

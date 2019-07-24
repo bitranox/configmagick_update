@@ -9,7 +9,6 @@ env:
         - pip_command="pip"
         - python_command="python"
         - WINEDEBUG=fixme-all       # switch off wine fix me messages
-        - CODECOV_TOKEN="95b44c95-2c2f-4c5f-b70e-eb4cbfec15f1"
         # pypi_password for rst_include
         # This works for sure - the Travis deploy is somehow buggy.
         # create the secret :

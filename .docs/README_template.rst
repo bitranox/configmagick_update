@@ -1,9 +1,9 @@
-lib_detect_encoding
+configmagick_update
 ===================
 
 .. include:: ./badges_without_jupyter.rst
 
-some convenience functions for encoding detection
+pip and project updates from github with version cache, to avoid unnecessary, time consuming downloads
 
 supports python 3.7 and possibly other dialects.
 
