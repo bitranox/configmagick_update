@@ -13,64 +13,93 @@ import requests
 
 # OWN
 from configmagick_bash import lib_bash
-import lib_list
 import lib_log_utils
 import lib_regexp
 import lib_shell
 
+# PROJ
+from config import Config
+import lib_helpers
+
 
 logger = logging.getLogger()
+lib_bash.install_color_log()
+Config.path_version_files_dir.mkdir(mode=0o775, parents=True, exist_ok=True)
 
 
-class Config(object):
-    path_version_files_dir: pathlib.Path = lib_bash.get_path_home_dir_current_user() / '.config/configmagick/configmagick_update'
-    path_version_file: pathlib.Path = path_version_files_dir / 'versions.dat'
-    # home directory and permission of created files depends on that
-    # will be reset by commandline when we need to restart as root
-    # can be also set from outside
-
-
-
-def init() -> bool:
+def pip_update(name_or_link: str, use_sudo: bool) -> bool:  # returns updated or not
     """
-    >>> assert init() == True
+    Updates (or installs) pip packages also from git links, only if there is a new master, by storing and checking the git hashes
 
-    :returns True on success
+    name_or_link: name of the pip package or link to github
+    sudo : pip install as root
+
+    Returns updated - True if the Package was Updated, or False when it was not updated
+
+
+    >>> pip_update('pip', use_sudo=False)
+    >>> pip_update('pip', use_sudo=False)
+
 
     """
-    lib_bash.install_color_log()
-    Config.path_version_files_dir.mkdir(mode=0o775, parents=True, exist_ok=True)
-    return True
 
-
-def get_package_type(name_or_link: str) -> str:
-    """
-    :returns the package type ["pypy_package"|"git_package"|"weblink"]
-
-    >>> assert get_package_type('pip') == 'pypy_package'
-    >>> assert get_package_type('https://github.com/pypa/pip.git') == 'git_package'
-    >>> assert get_package_type('git+https://github.com/pypa/pip.git') == 'git_package'
-    >>> assert get_package_type('https://github.com/pypa/archive/master.zip') == 'git_package'
-    >>> assert get_package_type('https://github.com/pypa/archive/master.zip') == 'weblink'
-    """
-    if 'https://github.com/' in name_or_link:
-        return 'git_package'
-    elif '/' not in name_or_link:
-        return 'pypy_package'
+    package_type = lib_helpers.get_package_type(name_or_link)
+    if package_type == 'pypy_package':
+        updated = pip_update_from_pypy(pypy_package=name_or_link, use_sudo=use_sudo)
+        return updated
+    elif package_type == 'git_package':
+        if not is_pip_git_package_up_to_date(git_link=name_or_link):
+            pip_update_from_git(git_link=name_or_link)
+            return True
+    elif package_type == 'weblink':
+        pip_update_from_weblink(weblink=name_or_link)
+        return True
     else:
-        return 'weblink'
+        return False
 
 
-def pip_update_from_pypy(pypy_package: str, show_output: bool = True) -> bool:
+# depricated
+def is_pip_pypy_package_up_to_date(pypy_package: str, use_sudo: bool) -> bool:
+
+    pip_command = lib_helpers.get_latest_pip_command().command_string
+    ls_commands = lib_helpers.get_ls_commands_prepend_sudo([pip_command, 'list', '-o'], use_sudo=use_sudo)
+    shell_response = lib_shell.run_shell_ls_command(ls_commands)
+    result_lines = lib_regexp.reg_grep(pypy_package, shell_response.stdout)
+    if not result_lines:
+        return False
+    # there can be more grep matches - for instance package distro, distro-info
+    # would create two result lines
+    for line in result_lines:
+        package, version, latest, package_type = line.split()
+        if package == pypy_package:
+            if version != latest:
+                return False
+            else:
+                return True
+
+def is_pip_git_package_up_to_date(git_link: str) -> bool:
+
+    return None
+
+
+def pip_update_from_pypy(pypy_package: str, use_sudo: bool, show_output: bool = True) -> bool:
     """
-    >>> import unittest
-    >>> assert pip_update_from_pypy('pip', show_output=False) == True
-    >>> unittest.TestCase().assertRaises(ValueError, pip_update_from_pypy, 'some_unknown_package', show_output=False)
+    :returns updated - True if updated, False if it was already up to date
+
+
+    >>> assert pip_update_from_pypy('urllib3==1.24.1', use_sudo=True, show_output=False) is not None    # first Update to old Version
+    >>> assert pip_update_from_pypy('urllib3', use_sudo=True, show_output=False) == True                # second Update to new Version
+    >>> assert pip_update_from_pypy('urllib3', use_sudo=True, show_output=False) == False               # third Update - is already up to date
 
     """
     try:
-        result = lib_shell.run_shell_ls_command([sys.executable, "-m", "pip", "install", "--upgrade", pypy_package], pass_std_out_line_by_line=show_output)
-        return True
+        pip_command = lib_helpers.get_latest_pip_command().command_string
+        ls_commands = lib_helpers.get_ls_commands_prepend_sudo([pip_command, "install", "--upgrade", pypy_package], use_sudo=use_sudo)
+        shell_response = lib_shell.run_shell_ls_command(ls_commands, pass_std_out_line_by_line=show_output)
+        if "Requirement already up-to-date: {pypy_package}".format(pypy_package=pypy_package) in shell_response.stdout:
+            return False
+        else:
+            return True
     except subprocess.CalledProcessError as exc:
         if exc.returncode == 13:   # pip permission error
             raise PermissionError(exc.stderr)
@@ -218,28 +247,7 @@ def pip_update_from_git(git_link: str) -> bool:
     return True
 
 
-def pip_update(name_or_link: str) -> bool:
-    """
-    Updates (or installs) pip packages also from git links, only if there is a new master,
-    by storing and checking the git hashes
 
-    >>> pip_update('pip')
-    >>> pip_update('pip')
-
-    # home directory and permission of created files depends on that
-
-    """
-
-    package_type = get_package_type(name_or_link)
-    if package_type == 'pypy_package':
-        pip_update_from_pypy(pypy_package=name_or_link)
-    elif package_type == 'git_package':
-        pip_update_from_git(git_link=name_or_link)
-    elif package_type == 'weblink':
-        pip_update_from_weblink(weblink=name_or_link)
-    return True
-
-# todo https://unix.stackexchange.com/questions/83986/tell-ssh-to-use-a-graphical-prompt-for-key-passphrase
 
 def main(sys_argv: List[str] = sys.argv[1:]) -> None:
     """
