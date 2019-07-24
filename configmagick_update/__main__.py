@@ -1,2 +1,2 @@
-from .configmagick_update import *  # pragma: no cover
-main()                              # pragma: no cover
+from .configmagick_update import main     # pragma: no cover
+main()                                    # pragma: no cover

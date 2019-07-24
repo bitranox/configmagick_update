@@ -1,0 +1,7 @@
+chardet                                                           # see : https://pypi.org/project/chardet/
+pytest                                                            # see : https://github.com/pytest-dev/pytest
+typing                                                            # see : https://pypi.org/project/typing/
+git+https://github.com/bitranox/configmagick_bash.git             # see : https://github.com/bitranox/configmagick_bash
+git+https://github.com/bitranox/lib_regexp.git                    # see : https://github.com/bitranox/lib_regexp
+# git+https://github.com/bitranox/lib_log_utils.git               # already included in configmagick_bash
+# git+https://github.com/bitranox/lib_shell                       # already included in configmagick_bash
