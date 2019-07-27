@@ -48,7 +48,7 @@ try:
 
 except (ImportError, ModuleNotFoundError):
     # update is expansive here - so we update only what we need to install
-    install('git+https://github.com/bitranox/configmagick_bash.git')
+    install('git+https://github.com/bitranox/configmagick_bash.git')  # installs also lib_logutils and lib_shell
     install('git+https://github.com/bitranox/lib_regexp.git')
 
 setup(
