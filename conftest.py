@@ -1,5 +1,5 @@
 # ignore for pytest collection
-collect_ignore = ['configmagick_update/__main__.py']
+collect_ignore = ['configmagick_update/__main__.py', 'build_docs.py']
 
 """
 collect_ignore = ['build_docs.py',
