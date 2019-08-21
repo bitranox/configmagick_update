@@ -229,6 +229,8 @@ def is_pip_package_installed(package_name: str) -> bool:
     >>> assert is_pip_package_installed('unknown_package') == False
 
     """
+    package_name = package_name.replace('_', '-')    # even when the package name is with underscore, it is installed and listed with dash !
+
     pip_command = get_latest_pip_command().command_string
     ls_commands = [pip_command, "list"]
     shell_response = lib_shell.run_shell_ls_command(ls_commands)

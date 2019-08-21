@@ -78,7 +78,8 @@ def pip_update_from_git(package_link: str, use_sudo: bool, show_output: bool = T
     :returns updated - True if updated, False if it was already up to date
 
     >>> import unittest
-    >>> unittest.TestCase().assertIsNotNone(pip_update_from_git, ('git+https://github.com/pypa/pip.git', True, False))
+    >>> unittest.TestCase().assertIsNotNone(pip_update_from_git, ('git+https://github.com/bitranox/lib_doctest_pycharm.git', True, False))
+    >>> # pip_update_from_git('git+https://github.com/bitranox/lib_doctest_pycharm.git', True, False)
 
 
     """
@@ -97,8 +98,9 @@ def pip_update_from_weblink(package_link: str, use_sudo: bool, show_output: bool
 def is_pip_git_package_up_to_date(package_name: str, package_link: str) -> bool:
     """
     >>> import unittest
-    >>> unittest.TestCase().assertIsNotNone(pip_update_from_git, ('git+https://github.com/pypa/pip.git',True, False))
-    >>> assert(is_pip_git_package_up_to_date('pip', 'git+https://github.com/pypa/pip.git')) == True
+    >>> unittest.TestCase().assertIsNotNone(pip_update_from_git, ('git+https://github.com/bitranox/lib_doctest_pycharm.git',True, False))
+    >>> assert(is_pip_git_package_up_to_date('lib_doctest_pycharm', 'git+https://github.com/bitranox/lib_doctest_pycharm.git')) == True
+
 
     """
     if not lib_helpers.is_pip_package_installed(package_name):

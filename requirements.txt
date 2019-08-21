@@ -1,7 +1,7 @@
 chardet                                                           # see : https://pypi.org/project/chardet/
 pytest                                                            # see : https://github.com/pytest-dev/pytest
 typing                                                            # see : https://pypi.org/project/typing/
-git+https://github.com/bitranox/configmagick_bash.git             # see : https://github.com/bitranox/configmagick_bash - this also installs lib_log_utils.git, lib_shell.git
-# git+https://github.com/bitranox/lib_log_utils.git               # see : https://github.com/bitranox/lib_log_utils (installed by configmagick_bash.git)
-# git+https://github.com/bitranox/lib_shell.git                   # see : https://github.com/bitranox/lib_shell (installed by configmagick_bash.git)
-git+https://github.com/bitranox/lib_regexp.git                    # see : https://github.com/bitranox/lib_regexp
+#git+https://github.com/bitranox/configmagick_bash.git             # see : https://github.com/bitranox/configmagick_bash - this also installs lib_log_utils.git, lib_shell.git
+## git+https://github.com/bitranox/lib_log_utils.git               # see : https://github.com/bitranox/lib_log_utils (installed by configmagick_bash.git)
+## git+https://github.com/bitranox/lib_shell.git                   # see : https://github.com/bitranox/lib_shell (installed by configmagick_bash.git)
+#git+https://github.com/bitranox/lib_regexp.git                    # see : https://github.com/bitranox/lib_regexp

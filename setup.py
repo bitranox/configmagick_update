@@ -51,22 +51,20 @@ except (ImportError, ModuleNotFoundError):
     install('git+https://github.com/bitranox/configmagick_bash.git')  # installs also lib_logutils and lib_shell
     install('git+https://github.com/bitranox/lib_regexp.git')
 
-setup(
-    name='configmagick_update',
-    version='0.0.1',
-    url='https://github.com/bitranox/configmagick_update',
-    packages=['configmagick_update'],
-    install_requires=['pytest', 'typing', 'chardet', 'configmagick_bash', 'lib_regexp'],
-    setup_requires=['pytest-runner'],
-    tests_require=['pytest'],
-
-    description=description,
-    long_description=long_description,
-    long_description_content_type='text/x-rst',
-    author='Robert Nowotny',
-    author_email='rnowotny1966@gmail.com',
-    classifiers=CLASSIFIERS,
-    )
+setup(name='configmagick_update',
+      version='0.0.1',
+      url='https://github.com/bitranox/configmagick_update',
+      packages=['configmagick_update'],
+      install_requires=['pytest', 'typing', 'chardet', 'configmagick_bash', 'lib_regexp'],
+      setup_requires=['pytest-runner'],
+      tests_require=['pytest'],
+      description=description,
+      long_description=long_description,
+      long_description_content_type='text/x-rst',
+      author='Robert Nowotny',
+      author_email='rnowotny1966@gmail.com',
+      classifiers=CLASSIFIERS
+      )
 
 # install_requires: what other distributions need to be installed when this one is.
 # setup_requires: what other distributions need to be present in order for the setup script to run
