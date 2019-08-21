@@ -228,6 +228,7 @@ def is_pip_package_installed(package_name: str) -> bool:
     >>> assert is_pip_package_installed('pip') == True
     >>> assert is_pip_package_installed('unknown_package') == False
 
+
     """
     package_name = package_name.replace('_', '-')    # even when the package name is with underscore, it is installed and listed with dash !
 

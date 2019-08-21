@@ -99,7 +99,8 @@ def is_pip_git_package_up_to_date(package_name: str, package_link: str) -> bool:
     """
     >>> import unittest
     >>> unittest.TestCase().assertIsNotNone(pip_update_from_git, ('git+https://github.com/bitranox/lib_doctest_pycharm.git',True, False))
-    >>> assert(is_pip_git_package_up_to_date('lib_doctest_pycharm', 'git+https://github.com/bitranox/lib_doctest_pycharm.git')) == True
+    >>> assert lib_helpers.is_pip_package_installed('lib_doctest_pycharm') == True
+    >>> assert is_pip_git_package_up_to_date('lib_doctest_pycharm', 'git+https://github.com/bitranox/lib_doctest_pycharm.git') == True
 
 
     """
