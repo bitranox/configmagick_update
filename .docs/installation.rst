@@ -33,7 +33,7 @@ via requirements.txt:
 .. code-block:: bash
 
     # Insert following line in Your requirements.txt:
-    # for the latest Release from pypy :
+    # for the latest Release:
     {repository}
     # for the latest Development Version :
     git+https://github.com/{repository_slug}.git
