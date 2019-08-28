@@ -1,7 +1,18 @@
-chardet                                                           # see : https://pypi.org/project/chardet/
-pytest                                                            # see : https://github.com/pytest-dev/pytest
-typing                                                            # see : https://pypi.org/project/typing/
-#git+https://github.com/bitranox/configmagick_bash.git             # see : https://github.com/bitranox/configmagick_bash - this also installs lib_log_utils.git, lib_shell.git
-## git+https://github.com/bitranox/lib_log_utils.git               # see : https://github.com/bitranox/lib_log_utils (installed by configmagick_bash.git)
-## git+https://github.com/bitranox/lib_shell.git                   # see : https://github.com/bitranox/lib_shell (installed by configmagick_bash.git)
-#git+https://github.com/bitranox/lib_regexp.git                    # see : https://github.com/bitranox/lib_regexp
+## Test Requirements
+## following Requirements will be installed temporarily for
+## "setup.py install test" or "pip install <package> --install-option test"
+typing ; python_version < "3.5"
+pathlib; python_version < "3.4"
+mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"
+pytest
+pytest-pep8 ; python_version < "3.5"
+pytest-codestyle ; python_version >= "3.5"
+pytest-mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"
+pytest-runner
+
+## Project Requirements
+chardet
+git+https://github.com/bitranox/configmagick_bash.git
+git+https://github.com/bitranox/lib_log_utils.git
+git+https://github.com/bitranox/lib_shell.git
+git+https://github.com/bitranox/lib_regexp.git
