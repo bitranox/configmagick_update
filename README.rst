@@ -19,7 +19,7 @@ configmagick_update
    :target: https://bettercodehub.com/results/bitranox/configmagick_update
 .. |snyk security| image:: https://snyk.io/test/github/bitranox/configmagick_update/badge.svg
    :target: https://snyk.io/test/github/bitranox/configmagick_update
-.. |code climate| image:: https://api.codeclimate.com/v1/badges/7d130ff52f3b507552ad/maintainability
+.. |code climate| image:: https://api.codeclimate.com/v1/badges/aa5a5ed6b54f83dd36fb/maintainability
    :target: https://codeclimate.com/github/bitranox/configmagick_update/maintainability
    :alt: Maintainability
 
@@ -82,7 +82,7 @@ via requirements.txt:
 .. code-block:: bash
 
     # Insert following line in Your requirements.txt:
-    # for the latest Release from pypy :
+    # for the latest Release:
     configmagick_update
     # for the latest Development Version :
     git+https://github.com/bitranox/configmagick_update.git
@@ -109,15 +109,26 @@ Requirements
 ------------
 following modules will be automatically installed :
 
-.. code-block:: shell
+.. code-block:: bash
 
-    chardet                                                           # see : https://pypi.org/project/chardet/
-    pytest                                                            # see : https://github.com/pytest-dev/pytest
-    typing                                                            # see : https://pypi.org/project/typing/
-    git+https://github.com/bitranox/configmagick_bash.git             # see : https://github.com/bitranox/configmagick_bash
-    git+https://github.com/bitranox/lib_regexp.git                    # see : https://github.com/bitranox/lib_regexp
-    # git+https://github.com/bitranox/lib_log_utils.git               # already included in configmagick_bash
-    # git+https://github.com/bitranox/lib_shell                       # already included in configmagick_bash
+    ## Test Requirements
+    ## following Requirements will be installed temporarily for
+    ## "setup.py install test" or "pip install <package> --install-option test"
+    typing ; python_version < "3.5"
+    pathlib; python_version < "3.4"
+    mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"
+    pytest
+    pytest-pep8 ; python_version < "3.5"
+    pytest-codestyle ; python_version >= "3.5"
+    pytest-mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"
+    pytest-runner
+
+    ## Project Requirements
+    chardet
+    configmagick_bash @ git+https://github.com/bitranox/configmagick_bash.git
+    lib_log_utils @ git+https://github.com/bitranox/lib_log_utils.git
+    lib_shell @ git+https://github.com/bitranox/lib_shell.git
+    lib_regexp @ git+https://github.com/bitranox/lib_regexp.git
 
 Acknowledgements
 ----------------
