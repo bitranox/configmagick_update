@@ -9,10 +9,3 @@ pytest-pep8 ; python_version < "3.5"
 pytest-codestyle ; python_version >= "3.5"
 pytest-mypy ; platform_python_implementation != "PyPy" and python_version >= "3.5"
 pytest-runner
-
-## Project Requirements
-chardet
-configmagick_bash @ git+https://github.com/bitranox/configmagick_bash.git
-lib_log_utils @ git+https://github.com/bitranox/lib_log_utils.git
-lib_shell @ git+https://github.com/bitranox/lib_shell.git
-lib_regexp @ git+https://github.com/bitranox/lib_regexp.git

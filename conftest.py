@@ -1,7 +1,7 @@
 import platform
 import sys
 
-collect_ignore = ['build_docs.py', '__main__.py']
+collect_ignore = ['build_docs.py', 'configmagick_update/__main__.py']
 
 
 def pytest_cmdline_preparse(args):
