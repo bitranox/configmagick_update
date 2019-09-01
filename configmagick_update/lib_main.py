@@ -77,14 +77,12 @@ def pip_update_from_git(package_link: str, use_sudo: bool, show_output: bool = T
     """
     :returns updated - True if updated, False if it was already up to date
 
-    >>> import unittest
-    >>> unittest.TestCase().assertIsNotNone(pip_update_from_git, ('git+https://github.com/bitranox/lib_doctest_pycharm.git', True, False))
-    >>> # pip_update_from_git('git+https://github.com/bitranox/lib_doctest_pycharm.git', True, False)
-
+    >>> result = pip_update_from_git('git+https://github.com/bitranox/lib_doctest_pycharm.git', use_sudo=True, show_output=False)
+    >>> assert result is not None
 
     """
 
-    updated = pip_update_from_pypy(package_name_or_link=package_link, use_sudo=use_sudo)
+    updated = pip_update_from_pypy(package_name_or_link=package_link, use_sudo=use_sudo, show_output=show_output)
     git_repository_slug = lib_helpers.get_git_repository_slug_from_link(package_link=package_link)
     git_remote_hash = lib_helpers.get_git_remote_hash(git_repository_slug=git_repository_slug)
     lib_helpers.save_git_hash_to_database(key=package_link, git_hash=git_remote_hash)
@@ -98,10 +96,9 @@ def pip_update_from_weblink(package_link: str, use_sudo: bool, show_output: bool
 def is_pip_git_package_up_to_date(package_name: str, package_link: str) -> bool:
     """
     >>> import unittest
-    >>> unittest.TestCase().assertIsNotNone(pip_update_from_git, ('git+https://github.com/bitranox/lib_doctest_pycharm.git',True, False))
+    >>> result = pip_update_from_git('git+https://github.com/bitranox/lib_doctest_pycharm.git',use_sudo=True, show_output=False)
     >>> assert lib_helpers.is_pip_package_installed('lib_doctest_pycharm') == True
     >>> assert is_pip_git_package_up_to_date('lib_doctest_pycharm', 'git+https://github.com/bitranox/lib_doctest_pycharm.git') == True
-
 
     """
     if not lib_helpers.is_pip_package_installed(package_name):
