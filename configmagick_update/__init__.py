@@ -1,5 +1,6 @@
 import pathlib
-from .configmagick_update import *
+from .lib_main import pip_install
+from .lib_main import pip_update
 
 
 def get_version() -> str:
