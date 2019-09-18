@@ -5,6 +5,7 @@ from typing import List
 
 # OWN
 from configmagick_bash import lib_bash
+import lib_log_utils
 import lib_regexp
 import lib_shell
 
@@ -129,21 +130,21 @@ def get_git_repository_slug_from_link(package_link: str) -> str:
             error = 'can not get the repository slug "{git_repository_slug}" from link "{git_link}" - wrong link ?'\
                 .format(git_repository_slug=git_repository_slug, git_link=package_link)
 
-            lib_bash.banner(logging.ERROR, error)
+            lib_log_utils.banner(logging.ERROR, error)
             raise ValueError(error)
 
         if '.zip' in package_link.lower():
             sanitized_git_link = get_sanitized_git_link(git_repository_slug=git_repository_slug)
             warning = 'better use "{sanitized_git_link}" than "{git_link} unless You need it for a reason"'\
                 .format(sanitized_git_link=sanitized_git_link, git_link=package_link)
-            lib_bash.banner(logging.WARNING, warning)
+            lib_log_utils.banner(logging.WARNING, warning)
 
         return git_repository_slug
     except Exception:
         error = 'can not get the repository slug "{git_repository_slug}" from link "{git_link}" - wrong link ?'\
             .format(git_repository_slug=git_repository_slug, git_link=package_link)
 
-        lib_bash.banner(logging.ERROR, error)
+        lib_log_utils.banner(logging.ERROR, error)
         raise ValueError(error)
 
 

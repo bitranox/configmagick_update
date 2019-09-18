@@ -4,6 +4,7 @@ import subprocess
 
 # OWN
 from configmagick_bash import lib_bash
+import lib_log_utils
 import lib_shell
 
 # PROJ
@@ -69,7 +70,7 @@ def pip_update_from_pypy(package_name_or_link: str, use_sudo: bool, show_output:
             raise PermissionError(exc.stderr)
         else:
             error = 'Package "{pypy_package}" can not be installed via pip:\n\n{stderr}'.format(pypy_package=package_name_or_link, stderr=exc.stderr)
-            lib_bash.banner(logging.ERROR, error)
+            lib_log_utils.banner(logging.ERROR, error)
             raise ValueError(error)
 
 

@@ -5,7 +5,6 @@ import sys
 from typing import List
 
 # OWN
-from configmagick_bash import lib_bash
 import lib_log_utils
 
 # PROJ
@@ -20,7 +19,7 @@ except ImportError:                 # for local development
 
 
 logger = logging.getLogger()
-lib_bash.install_color_log()
+lib_log_utils.install_color_log()
 Config.path_version_files_dir.mkdir(mode=0o775, parents=True, exist_ok=True)
 
 
