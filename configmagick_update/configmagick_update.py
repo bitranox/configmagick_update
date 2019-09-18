@@ -19,7 +19,7 @@ except ImportError:                 # for local development
 
 
 logger = logging.getLogger()
-lib_log_utils.install_color_log()
+lib_log_utils.setup_console_logger_color()
 Config.path_version_files_dir.mkdir(mode=0o775, parents=True, exist_ok=True)
 
 
