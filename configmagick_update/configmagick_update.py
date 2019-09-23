@@ -19,7 +19,7 @@ except ImportError:                 # for local development
 
 
 logger = logging.getLogger()
-lib_log_utils.setup_console_logger_color()
+lib_log_utils.add_stream_handler_color()
 Config.path_version_files_dir.mkdir(mode=0o775, parents=True, exist_ok=True)
 
 
@@ -35,7 +35,7 @@ def main(sys_argv: List[str] = sys.argv[1:]) -> None:
 
     # noinspection PyBroadException
     try:
-        lib_log_utils.setup_console_logger()
+        lib_log_utils.add_stream_handler()
 
         argparse_namespace, parser = lib_args.parse_args(sys_argv)
 
