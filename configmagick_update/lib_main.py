@@ -70,7 +70,7 @@ def pip_update_from_pypy(package_name_or_link: str, use_sudo: bool, show_output:
             raise PermissionError(exc.stderr)
         else:
             error = 'Package "{pypy_package}" can not be installed via pip:\n\n{stderr}'.format(pypy_package=package_name_or_link, stderr=exc.stderr)
-            lib_log_utils.banner_level(error, logging.ERROR)
+            lib_log_utils.banner_error(error)
             raise ValueError(error)
 
 
