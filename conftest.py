@@ -30,6 +30,7 @@ def pytest_cmdline_preparse(args):
         args[:] = ["--pycodestyle"] + args
 
 
+
 """
 collect_ignore = ['build_docs.py',
                   'conf_rst_inc_sample.py',
